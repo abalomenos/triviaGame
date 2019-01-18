@@ -5,15 +5,17 @@ var masterQuestionList = [
         a2: "Beast",
         a3: "Storm",
         a4: "Wolverine",
-        c:  3
+        c:  3,
+        img: "https://via.placeholder.com/150"
     },
     {
         q: "How the Grinch Stole Christmas is a 2000 American Christmas fantasy comedy film starring which actor as the Grinch?",
         a1: "Adam Sandler",
         a2: "Jim Carrey",
-        a3: "Eddie Myrphy",
+        a3: "Eddie Murphy",
         a4: "Ben Stiller",
-        c:  2
+        c:  2,
+        img: "https://via.placeholder.com/150"
     },
     {
         q: "In what city would you find the Wizard of Oz?",
@@ -21,7 +23,8 @@ var masterQuestionList = [
         a2: "Silvermoon City",
         a3: "Amber City",
         a4: "Emerald City",
-        c:  4
+        c:  4,
+        img: "https://via.placeholder.com/150"
     },
     {
         q: "What is Shawshank, in the movie The Shawshank Redemption?",
@@ -29,21 +32,20 @@ var masterQuestionList = [
         a2: "The prison",
         a3: "The warden",
         a4: "The main character",
-        c:  2
+        c:  2,
+        img: "https://via.placeholder.com/150"
     },
 ]
 
 
 var gameState = "notPlaying";
 
-var correct = 0;
-var incorrect = 0;
-var unanswered = 0;
-var time = 15;
-var resultTimer = null;
-
-
-var currentQuestionList = masterQuestionList.slice();
+var correct;
+var incorrect;
+var unanswered;
+var time;
+var resultTimer;
+var currentQuestionList;
 
 //Avoid text selection
 function noText(x){
@@ -54,12 +56,13 @@ function noText(x){
 
 function clear() {
     currentQuestionList = masterQuestionList.slice();
-    time = 15;
-    console.log("New ganme");
+    correct = 0;
+    incorrect = 0;
+    unanswered = 0;
+    console.log("New Ganme");
 }
 
 function startTimer() {
-    // tempTimer = setInterval(timer, 1000);
     timer = setInterval(function(){
         if (time > 0) {
             time--;
@@ -70,39 +73,50 @@ function startTimer() {
     }, 1000);
 }
 
-// function timer(){
-    
-// }
-
-
-
 function gameOver (){
-    // console.log(currentQuestionList.length);
-    clear();
+    clearInterval(timer);
+    $("#game").hide();
+    $("#gameOver").show();
+    $("#correct").html("Correct answers: " + correct);
+    $("#incorrect").html("Incorrect answers: " + incorrect);
+    $("#unanswered").html("Unanswered answers: " + unanswered);
+    gameState = "notPlaying";
 }
 
 function showCorrect() {
     clearInterval(timer);
     $("#game").hide();
-    $("#correct").show();
+    $("#gameResult").show();
+    $("#resultStatus").html("Correct!");
+    $("#correctAnswer").html("The answer is: " + correctAnswerText);
+    $("#resultPhoto").html("<a><img src=" + currentPhoto + "></>")
+
     correct++;
-    console.log("correct");
+    console.log("Correct");
     resultTimer = setInterval(showQuestion, 5000);
 }
 
 function showIncorrect() {
     clearInterval(timer);
     $("#game").hide();
-    $("#incorrect").show();
+    $("#gameResult").show();
+    $("#resultStatus").html("Wrong!");
+    $("#correctAnswer").html("The answer is: " + correctAnswerText);
+    $("#resultPhoto").html("<a><img src=" + currentPhoto + "></>")
+    
     incorrect++;
-    console.log("incorrect");
+    console.log("Incorrect");
     resultTimer = setInterval(showQuestion, 5000);
 }
 
 function showUnanswered(){
     clearInterval(timer);
     $("#game").hide();
-    $("#unanswered").show();
+    $("#gameResult").show();
+    $("#resultStatus").html("Out of Time!");
+    $("#correctAnswer").html("The answer is: " + correctAnswerText);
+    $("#resultPhoto").html("<a><img src=" + currentPhoto + "></>")
+
     unanswered++;
     console.log("Timeout");
     resultTimer = setInterval(showQuestion, 5000);
@@ -110,20 +124,24 @@ function showUnanswered(){
 
 function showQuestion() {
     $("#gameStart").hide();
+    $("#gameResult").hide();
+    $("#gameOver").hide();
     $("#game").show();
     clearInterval(resultTimer);
-    time = 15;
+    time = 10;
     startTimer();
     if (currentQuestionList.length > 0){
         currentQuestionPointer = Math.floor(Math.random() * currentQuestionList.length);
         currentQuestion = currentQuestionList[currentQuestionPointer].q;
-        correctAnswer = currentQuestionList[currentQuestionPointer].c;
+        correctAnswerID = currentQuestionList[currentQuestionPointer].c;
+        currentPhoto = currentQuestionList[currentQuestionPointer].img;
+        correctAnswerText = currentQuestionList[currentQuestionPointer]["a" + correctAnswerID];
         $("#timer").html("Time Remaining: " + time);
         $("#currentQuestion").html("<td>" + currentQuestion + "</td>");
         $("#currentAnswers").html(""); // to clear ansewers for next question
         for (i=1; i<5; i++) {
             var currentAnswer = $("<td>");
-            var text = currentQuestionList[currentQuestionPointer]["a"+i];
+            var text = currentQuestionList[currentQuestionPointer]["a" + i];
             currentAnswer.attr("id", i),
             currentAnswer.addClass("answer");
             currentAnswer.html(text);
@@ -133,7 +151,6 @@ function showQuestion() {
 
             $("#currentAnswers").append(currentAnswer);
         }
-        console.log(correctAnswer);
         currentQuestionList.splice(currentQuestionPointer, 1);
     } else {
         gameOver();
@@ -145,14 +162,15 @@ document.onkeyup = function(event) {
     var x = event.charCode || event.keyCode; // depending on browser - for compatibility
     if (x === 13) {
         if (gameState == "notPlaying") { // If Enter is pressed while playing game, avoid reset
-            // clear();
+            gameState = "Playing";
+            clear();
             showQuestion();
         }
     }
 }
 
 $(document).on('click','.answer', function() {
-    if (this.id == correctAnswer){
+    if (this.id == correctAnswerID){
         showCorrect();
     } else {
         showIncorrect();
@@ -161,7 +179,6 @@ $(document).on('click','.answer', function() {
 
 window.onload = function() {
     $("#game").hide();
-    $("#correct").hide();
-    $("#incorrect").hide();
-    $("#unanswered").hide();
+    $("#gameResult").hide();
+    $("#gameOver").hide();
 }
