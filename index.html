@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/animate.css"/>
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/animate.css"/> -->
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styleTrivia.css"/>
 
@@ -45,7 +45,17 @@
             <h4 class="box">Trivia Game!</h4>
             <div id="gameStart">
                 <h3 class="centerMessage">Press the Enter key to get started!</h3>
-            </div>                
+            </div>
+            <div id="game">
+                <div id="timer"></div>
+                <table id="centerTable" class="centerTable">
+                    <tr id="currentQuestion"></tr>
+                    <tr id="currentAnswers"></tr>
+                </table>
+            </div>
+            <div id="correct"></div>
+            <div id="incorrect"></div>
+            <div id="unanswered"></div>
         </div>
     </section>
 
