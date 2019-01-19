@@ -3,7 +3,8 @@
 
 html {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) repeat, url("../images/background_img.jpg") no-repeat center center;
-    min-height: 100%;
+    /* min-height: 100%; */
+    height: 100vh;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -102,6 +103,37 @@ h2 {
     -webkit-animation: header2 linear 1s forwards; /* Safari 4.0 - 8.0 */
     animation: header2 linear 1s forwards;
     /* CSS Animations - actually aligning left due to width 0, doing this for mobile view transition */
+}
+
+h3 {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    color: #ac856c;
+}
+
+h5 {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    color: #00ff00;
+}
+
+h6 {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    color: #FF0018;
 }
 
 /* Define hr style */
@@ -258,6 +290,32 @@ img.profile {
 }
 
 /*---------- Portfolio Page End ----------*/
+
+
+/*------------ Portfolio Items ------------*/
+
+table, th, td, tr {
+    padding: 5px;
+}
+
+#gameStart {
+    position: relative;
+    top: 100px;
+    padding: 0 50px;
+    margin: 0 auto;
+    min-width: 100px;
+    max-width: 450px;
+    text-align: center;   
+}
+
+.centerMessage {
+    padding: 20px;
+    margin: 0 auto;
+    color: black;
+    background-color: blanchedalmond;
+}
+
+/*---------- Portfolio Items End ----------*/
 
 
 /*------------ Contact Page ------------*/
@@ -450,7 +508,8 @@ textarea {
 
     body {
         /* Workaround for footer */
-        height: 100%;
+        /* height: 100%; */
+        min-height: 100vh;
         position: relative;
         margin: 0;
         padding: 0;
@@ -467,7 +526,7 @@ textarea {
         padding-bottom: 50px;
 
         /* Workaround for footer */
-        min-height: 100vh; /* will cover the 100% of viewport */
+        /* min-height: 100vh; */
         overflow: hidden;
         display: block;
         position: relative;
@@ -621,73 +680,4 @@ textarea {
 }
 
 /*---------- Media Queries End ----------*/
-
-
-/* Hangman */
-
-table, th, td, tr {
-    padding: 5px;
-  }
-
-#gameStart {
-    position: relative;
-    right: 0;
-    top: 0;
-    margin: auto;
-    width: 100%;
-    height: auto;
-    text-align: center;
-    color: black;
-    background-color: blanchedalmond;
-}
-
-.hangman {
-    padding: 25px;
-    color: #777777;
-    background-color: #ffffff;
-    border-color: #dddddd;
-    font-size: 16px;
-    line-height: 1.5;
-    text-align: center;
-    height: 500px;
-}
-
-.centerTable {
-    margin: 5px auto;
-    text-align: center;
-}
-
-.leftTable {
-    float: left;
-    margin: 5px auto;
-    text-align: left;
-    min-width: 150px;
-}
-
-.rightTable {
-    float: right;
-    margin: 5px auto;
-    text-align: left;
-    min-width: 150px;
-}
-
-h3 {
-    font-size: 20px;
-    font-weight: bold;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    text-align: center;
-}
-
-h4 {
-    font-size: 20px;
-    font-weight: bold;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    text-align: center;
-    color: #E8900C;
-}
-
-.centerMessage {
-    margin: 150px auto;
-    padding: 20px;
-}
 

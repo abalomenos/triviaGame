@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css"/>
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/animate.css"/> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/animate.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styleTrivia.css"/>
 
@@ -42,29 +42,51 @@
                 
             <h2>Trivia Game</h2>
             <hr>
-            <h4 class="box">Trivia Game!</h4>
+            <h4 class="box">Movie Themed Trivia Game!</h4>
+            <br>
             <div id="gameStart">
-                <h3 class="centerMessage">Press the Enter key to get started!</h3>
+                <h3 class="centerMessage" unselectable="on" style="user-select:none;">Click here or press Enter to start!</h3>
             </div>
-            <div id="game">
-                <div id="timer"></div>
-                <table id="centerTable" class="centerTable">
-                    <tr id="currentQuestion"></tr>
-                    <tr id="currentAnswers"></tr>
-                </table>
-            </div>
-            <div id="gameResult">
-                <div id="resultStatus"></div>
-                <div id="correctAnswer"></div>
-                <div id="resultPhoto"></div>
-            </div>
+            <div class="gameContainer">
+                <div id="game">
+                    <div id="timer"></div>
+                    <hr>
+                    <div id="currentQuestion" class="animated zoomInDown"></div>
+                    <br>
+                    <table id="centerTable" class="centerTable">
+                        <tr id="currentAnswers"></tr>
+                    </table>
+                </div>
+                <div id="gameResult">
+                    <div id="resultStatus"></div>
+                    <hr>
+                    <div id="correctAnswer" class="animated fadeInLeft"></div>
+                    <br>
+                    <div id="resultPhoto" class="animated fadeInRight"></div>
+                </div>
 
-            <div id="gameOver">
-                <h3>All done, heres how you did!</h3>
-                <div id="correct"></div>
-                <div id="incorrect"></div>
-                <div id="unanswered"></div>
-                <h3>Press Enter to play again</h3>
+                <div id="gameOver" class="animated fadeIn">
+                    <h3>All done, heres how you did!</h3>
+                    <hr>
+                    <br>
+                    <table id="centerTable" class="centerTable">
+                        <tr>
+                            <td class="leftAlign">Correct answers: </td>
+                            <td class="leftAlign" id="correct"></td>
+                        </tr>
+                        <tr>
+                            <td class="leftAlign">Incorrect answers: </td>
+                            <td class="leftAlign" id="incorrect"></td>
+                        </tr>
+                        <tr>
+                            <td class="leftAlign">Unanswered answers: </td>
+                            <td class="leftAlign" id="unanswered"></td>
+                        </tr>
+                    </table>
+                    <div id="gameStart">
+                        <h3 class="centerMessage" unselectable="on" style="user-select:none;">Click here or press Enter to play again!</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
